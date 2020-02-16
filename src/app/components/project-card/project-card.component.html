@@ -1,0 +1,79 @@
+<div class="container box">
+    <article class="media" *ngIf="project">
+        <figure class="media-left">
+            <p class="image is-128x128">
+                <img src="https://bulma.io/images/placeholders/128x128.png">
+            </p>
+        </figure>
+        <div class="media-content">
+            <h1 class="title is-3">
+                {{ project.name }}
+            </h1>
+            <p>{{ project.description }}</p>
+            <br>
+            <div class="columns">
+                <!-- author -->
+                <div class="column is-one-third">
+                    <div class="columns">
+                        <div class="column has-text-centered is-one-fifth">
+                            <i class="fas fa-user fa-3x icon-center"></i>
+                        </div>
+                        <div class="column">
+                            <p class="heading">Author</p>
+                            <p class="title is-5">Domen Vake</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- git -->
+                <div class="column is-one-third">
+                    <div class="columns">
+                        <div class="column has-text-centered is-one-fifth">
+                            <i class="fab fa-github fa-3x icon-center"></i>
+                        </div>
+                        <div class="column">
+                            <p class="heading">Git</p>
+                            <p class="title is-5">
+                                <a 
+                                    href="http://{{project.git}}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">
+                                        {{ project.git }}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- url -->
+                <div class="column is-one-third">
+                    <div class="columns">
+                        <div class="column has-text-centered is-one-fifth">
+                            <i class="fas fa-link fa-3x icon-center"></i>
+                        </div>
+                        <div class="column">
+                            <p class="heading">Git</p>
+                            <p class="title is-5">
+                                <a 
+                                    href="http://{{project.url}}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">
+                                        {{ project.url }}
+                                    </a>
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="media-right">
+            <span class="dot" [ngClass]="{'is-online': isOnline}"></span>
+        </div>
+    </article>
+
+    <div *ngIf="!project">
+        <div class="level">
+            <div class="level-item has-text-centered">
+                Unable to display project!
+            </div>
+        </div>
+    </div>
+</div>

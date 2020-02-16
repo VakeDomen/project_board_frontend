@@ -1,0 +1,19 @@
+<div class="container" *ngIf="projects && projects.length > 0">
+    <app-project-card 
+        *ngFor="let project of projects"
+        [project]=project    
+    ></app-project-card>
+</div>
+<div class="container margin-top" *ngIf="!(projects && projects.length > 0)">
+    <div class="level-item has-text-centered">
+        <div class="header">
+            <h1 class="title is-1">
+                No projects!
+            </h1>
+            <br>
+            <h3 class="subtitle is-2">
+                Login to add projects
+            </h3>
+        </div>
+    </div>
+</div>
