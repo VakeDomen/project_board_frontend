@@ -1,29 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { first } from "rxjs/operators";
+import { HttpClient } from '@angular/common/http';
+import { Project } from '../models/project';
 import { Observable } from 'rxjs';
+import { ApiResponse } from '../models/response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PingService {
 
+  apiUrl = environment.apiUrl + '/projects/ping/';
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
-
-  private ping(address: string): Observable<HttpResponse<Object>> {
-    return this.http.get("http://" + address, { observe: 'response' }).pipe(first());
+  
+  pingProject(project: Project): Observable<ApiResponse<boolean>> {
+    return this.http.get<ApiResponse<boolean>>(this.apiUrl + project.id);
   }
 
-  isOnline(address: string, next): void {
-    this.ping(address).subscribe(resp => {
-      if (resp.status === 200) {
-        next(true);
-      } else {
-        next(false);
-      }
-    }), err => next(false);
-  }
 }
 

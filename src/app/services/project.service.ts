@@ -16,11 +16,11 @@ export class ProjectService {
     private http: HttpClient,
   ) { }
 
-  getPublicProjects(): Observable<ApiResponse<Project>> {
-    return this.http.get<ApiResponse<Project>>(this.apiUrl);
+  getPublicProjects(): Observable<ApiResponse<Project[]>> {
+    return this.http.get<ApiResponse<Project[]>>(this.apiUrl);
   }
 
-  getAllProjects(): Observable<ApiResponse<Project>> {
-    return this.http.get<ApiResponse<Project>>(this.apiUrl);
+  getAllProjects(): Observable<ApiResponse<Project[]>> {
+    return this.http.get<ApiResponse<Project[]>>(this.apiUrl);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { PingService } from 'src/app/services/ping.service';
+import { ApiResponse } from 'src/app/models/response';
 
 @Component({
   selector: 'app-project-card',
@@ -10,19 +11,18 @@ import { PingService } from 'src/app/services/ping.service';
 export class ProjectCardComponent implements OnChanges {
 
   @Input() project: Project;
-  isOnline: boolean;
+  isOnline: boolean = false;
+  pinged: boolean = false;
 
   constructor(
     private pingService: PingService,
   ) { }
 
   ngOnChanges() {
-    this.pingService.isOnline(this.project.url, this.setOnline);
+    this.pingService.pingProject(this.project).subscribe((succ: ApiResponse<boolean>) => {
+      this.isOnline = succ.data;
+    })  
   }
 
-
-  setOnline(online: boolean): void {
-    this.isOnline = online;
-  }
 
 }

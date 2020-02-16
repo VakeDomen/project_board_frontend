@@ -24,6 +24,7 @@
     "bulma-switch": "^2.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
+    "web-pingjs": "^1.0.1",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

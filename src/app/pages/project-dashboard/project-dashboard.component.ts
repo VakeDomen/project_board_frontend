@@ -20,12 +20,12 @@ export class ProjectDashboardComponent implements OnInit {
     this.projectService
       .getPublicProjects()
       .subscribe(
-        (data: ApiResponse<Project>) => this.handleProjects(data), 
+        (data: ApiResponse<Project[]>) => this.handleProjects(data), 
         (err: ApiResponse<any>) => this.handleError(err)
       );
   }
 
-  handleProjects(projects: ApiResponse<Project>): void {
+  handleProjects(projects: ApiResponse<Project[]>): void {
     this.projects = projects.data;
   }
 
