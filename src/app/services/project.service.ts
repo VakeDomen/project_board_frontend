@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';
 import { ApiResponse } from '../models/response';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  apiUrl = environment.apiUrl + '/projects';
+  apiUrl = environment.apiUrl + '/projects';  
 
   constructor(
-    private http: HttpClient,
+    private http: HttpService,
   ) { }
 
   getPublicProjects(): Observable<ApiResponse<Project[]>> {
