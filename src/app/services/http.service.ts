@@ -13,38 +13,40 @@ export class HttpService {
         private auth: AuthService,
     ) { }
 
-    private httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json' ,
-            'Access-Control-Allow-Credentials': 'true',
-          }),
-    }
-
-    refreshAuthorizationHeader(): void {
+    generateAuthorizationHeader(): {headers: HttpHeaders} {
         if (this.auth.isLoggedIn()) {
-            this.httpOptions.headers.append('Authorization', 'Bearer ' + this.auth.getJWTtoken());
+            return {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': 'true',
+                    'Authorization': this.auth.getJWTtoken()
+                })
+            };
         } else {
-            this.httpOptions.headers.delete('Authorization');
+            return {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': 'true',
+                }),
+            };
         }
     }
 
     get<T>(url): Observable<T> {
-        this.refreshAuthorizationHeader();
-        return this.http.get<T>(url, this.httpOptions);
+        return this.http.get<T>(url, this.generateAuthorizationHeader());
     }
 
     post<T>(url, data): Observable<T> {
-        this.refreshAuthorizationHeader();
-        return this.http.post<T>(url, data, this.httpOptions);
+        return this.http.post<T>(url, data, this.generateAuthorizationHeader());
     }
 
     patch<T>(url, data): Observable<T> {
-        this.refreshAuthorizationHeader();
-        return this.http.patch<T>(url, data, this.httpOptions);
+        this.generateAuthorizationHeader();
+        return this.http.patch<T>(url, data, this.generateAuthorizationHeader());
     }
 
     delete<T>(url): Observable<T> {
-        this.refreshAuthorizationHeader();
-        return this.http.delete<T>(url, this.httpOptions);
+        this.generateAuthorizationHeader();
+        return this.http.delete<T>(url, this.generateAuthorizationHeader());
     }
 }

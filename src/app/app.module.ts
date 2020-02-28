@@ -13,6 +13,7 @@ import { LocalAuthComponent } from './components/auth/local-auth/local-auth.comp
 import { LocalLoginComponent } from './components/auth/local-login/local-login.component';
 import { LocalRegisterComponent } from './components/auth/local-register/local-register.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { NewProjectComponent } from './components/new-project/new-project.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     ProjectListComponent,
     LocalAuthComponent,
     LocalLoginComponent,
-    LocalRegisterComponent
+    LocalRegisterComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,

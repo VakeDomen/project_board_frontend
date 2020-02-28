@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/models/project';
 import { ApiResponse } from 'src/app/models/response';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-project-dashboard',
@@ -14,6 +15,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -31,5 +33,9 @@ export class ProjectDashboardComponent implements OnInit {
 
   handleError(error: ApiResponse<any>): void {
     console.log(error);
+  }
+
+  addNewProject(project: Project): void {
+    this.projects.push(project);
   }
 }

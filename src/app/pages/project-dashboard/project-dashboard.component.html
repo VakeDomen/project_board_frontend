@@ -1,4 +1,10 @@
 <div class="container">
+    <div class="level">
+        <div class="level-left"></div>
+        <div class="level-right">
+            <app-new-project *ngIf="authService.isLoggedIn()" (newProject)=addNewProject($event)></app-new-project>
+        </div>
+    </div>
     <app-project-list
         [projects]=projects
     ></app-project-list>

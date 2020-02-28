@@ -1,0 +1,64 @@
+<div class="button is-sucess" *ngIf="authService.isLoggedIn()" (click)='modalOpen = true'>
+    <i class="fas fa-plus-square fa-3x"></i>
+</div>
+
+<!-- auth modal -->
+<div class="modal" [ngClass]="{'is-active': modalOpen}">
+    <div class="modal-background" (click)='modalOpen = false'></div>
+    <div class="modal-card">
+        <!-- modal-body -->
+
+        <div class="content">
+            <!-- tab selection -->
+            <div class="container box">
+                <form class="box">
+                    <div class="field">
+                        <label for="" class="label">Name</label>
+                        <div class="control has-icons-left">
+                            <input [(ngModel)]=project.name name=name type="text" placeholder="Full name" class="input">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="" class="label">Description</label>
+                        <div class="control has-icons-left">
+                            <input [(ngModel)]=project.description name=description type="email" placeholder="email"
+                                class="input">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="" class="label">Git</label>
+                        <div class="control has-icons-left">
+                            <input [(ngModel)]=project.git name=git type="text" placeholder="email" class="input">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="" class="label">Url</label>
+                        <div class="control has-icons-left">
+                            <input [(ngModel)]=project.url name=url type="text" placeholder="url" class="input">
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button class="button is-primary" (click)=submit()>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- /modal body -->
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)='modalOpen = false'></button>
+</div>
