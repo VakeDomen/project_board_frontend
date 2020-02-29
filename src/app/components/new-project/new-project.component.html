@@ -1,5 +1,5 @@
-<div class="button is-sucess" *ngIf="authService.isLoggedIn()" (click)='modalOpen = true'>
-    <i class="fas fa-plus-square fa-3x"></i>
+<div class="margin-top-3 has-text-primary" *ngIf="authService.isLoggedIn()" (click)='modalOpen = true'>
+    <i class="fas fa-plus-square fa-3x is-sucess"></i>
 </div>
 
 <!-- auth modal -->
@@ -15,7 +15,7 @@
                     <div class="field">
                         <label for="" class="label">Name</label>
                         <div class="control has-icons-left">
-                            <input [(ngModel)]=project.name name=name type="text" placeholder="Full name" class="input">
+                            <input [(ngModel)]=project.name name=name type="text" placeholder="Project name/title" class="input">
                             <span class="icon is-small is-left">
                                 <i class="fa fa-user"></i>
                             </span>
@@ -24,35 +24,39 @@
                     <div class="field">
                         <label for="" class="label">Description</label>
                         <div class="control has-icons-left">
-                            <input [(ngModel)]=project.description name=description type="email" placeholder="email"
+                            <input [(ngModel)]=project.description name=description type="short description" placeholder="email"
                                 class="input">
                             <span class="icon is-small is-left">
-                                <i class="fa fa-envelope"></i>
+                                <i class="fas fa-list-alt"></i>
                             </span>
                         </div>
                     </div>
                     <div class="field">
                         <label for="" class="label">Git</label>
                         <div class="control has-icons-left">
-                            <input [(ngModel)]=project.git name=git type="text" placeholder="email" class="input">
+                            <input [(ngModel)]=project.git name=git type="text" placeholder="Link to git repo" class="input">
                             <span class="icon is-small is-left">
-                                <i class="fa fa-envelope"></i>
+                                <i class="fab fa-github"></i>
                             </span>
                         </div>
                     </div>
                     <div class="field">
                         <label for="" class="label">Url</label>
                         <div class="control has-icons-left">
-                            <input [(ngModel)]=project.url name=url type="text" placeholder="url" class="input">
+                            <input [(ngModel)]=project.url name=url type="text" placeholder="Link to project" class="input">
                             <span class="icon is-small is-left">
-                                <i class="fa fa-envelope"></i>
+                                <i class="fas fa-link"></i>
                             </span>
                         </div>
                     </div>
-                    <div class="field">
-                        <button class="button is-primary" (click)=submit()>
-                            Submit
-                        </button>
+                    <div class="level">
+                        <div class="level-item has-text-centered">
+                            <div class="field">
+                                <button class="button is-primary" (click)=submit()>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
