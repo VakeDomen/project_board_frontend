@@ -14,7 +14,7 @@ export class LocalAuthComponent implements OnInit {
   
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {
