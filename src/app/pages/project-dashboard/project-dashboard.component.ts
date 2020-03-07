@@ -15,7 +15,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private authService: AuthService,
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {
