@@ -1,4 +1,7 @@
-<div class="container box">
+<div 
+    class="container box gray-hover"
+    [routerLink]="['/project/' + project.id]" routerLinkActive="router-link-active"     
+>
     <article class="media" *ngIf="project">
         <figure class="media-left">
             <p class="image is-128x128">
