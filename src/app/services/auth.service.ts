@@ -12,6 +12,7 @@ export class AuthService {
 
   private apiUrl = environment.apiUrl + '/auth/';
   private token = 'JWTtoken';
+  private user = 'user';
   
 
   constructor(
@@ -19,24 +20,34 @@ export class AuthService {
   ) { }
 
   isLoggedIn(): boolean {
-    if (!localStorage.getItem(this.token)) {
+    if (!sessionStorage.getItem(this.token)) {
       return false;
     }
     return true;
   }
 
   getJWTtoken(): string {
-    return localStorage.getItem(this.token);
+    return sessionStorage.getItem(this.token);
   }  
 
   logout(): void {
-    localStorage.removeItem(this.token);
+    sessionStorage.removeItem(this.token);
+    sessionStorage.removeItem(this.user);
+  }
+
+  isLoggedUser(id: string): boolean {
+    const user = sessionStorage.getItem(this.user);
+    if (user && (JSON.parse(user).id === id)) {
+      return true;
+    }
+    return false;
   }
 
   async loginLocal(credentials: LocalCredentials): Promise<boolean> {
     try {
-      const response: ApiResponse<string> = await this.http.post<ApiResponse<string>>(this.apiUrl + 'local/login', credentials).toPromise();
-      localStorage.setItem(this.token, response.data);
+      const response: ApiResponse<any> = await this.http.post<ApiResponse<any>>(this.apiUrl + 'local/login', credentials).toPromise();
+      sessionStorage.setItem(this.token, response.data.token);
+      sessionStorage.setItem(this.user, JSON.stringify(response.data.user));
     } catch(error) {
       return false;
     }
@@ -45,7 +56,7 @@ export class AuthService {
 
   async registerLocal(user: User): Promise<boolean> {
     try{
-      const response: ApiResponse<null> = await this.http.post<ApiResponse<null>>(this.apiUrl + 'local/register', user).toPromise();
+      const response: ApiResponse<null> = await this.http.post<ApiResponse<null>>(this.apiUrl + 'session/register', user).toPromise();
     } catch (err) {
       return false;
     }

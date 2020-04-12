@@ -1,1 +1,85 @@
-<p>project-overview works!</p>
+<div class="container" *ngIf="project">
+    <div class="level">
+        <div class="level-left">
+            <h1 class="title is-1">
+                {{project.name}}
+            </h1>
+        </div>
+        <div class="level-right">
+            <button class="button is-primary" *ngIf="isOwner()">Edit</button>
+        </div>
+    </div>
+
+    <div class="container box">
+        {{project.description}}
+    </div>
+    <div class="box container">
+        <div class="columns">
+            <!-- author -->
+            <div class="column is-one-third">
+                <div class="columns">
+                    <div class="column has-text-centered is-one-fifth">
+                        <i class="fas fa-user fa-3x icon-center"></i>
+                    </div>
+                    <div class="column">
+                        <p class="heading">Author</p>
+                        <p class="title is-5">Domen Vake</p>
+                    </div>
+                </div>
+            </div>
+            <!-- git -->
+            <div class="column is-one-third">
+                <div class="columns">
+                    <div class="column has-text-centered is-one-fifth">
+                        <i class="fab fa-github fa-3x icon-center"></i>
+                    </div>
+                    <div class="column">
+                        <p class="heading">Git</p>
+                        <p class="title is-5">
+                            <a 
+                                href="http://{{project.git}}" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                    {{ project.git }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- url -->
+            <div class="column is-one-third">
+                <div class="columns">
+                    <div class="column has-text-centered is-one-fifth">
+                        <i class="fas fa-link fa-3x icon-center"></i>
+                    </div>
+                    <div class="column">
+                        <p class="heading">Url</p>
+                        <p class="title is-5">
+                            <a 
+                                href="http://{{project.url}}" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                    {{ project.url }}
+                                </a>
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- README -->
+    <div class="container box" *ngIf="project.git">
+        <!-- <div markdown [src]="'https://'+project.git + '/blob/master/README.md'" lineNumbers [start]="5"></div> -->
+        <h1 class="title is-1">TODO: git readme parse</h1>
+    </div>
+</div>
+
+<div class="container" *ngIf="!project">
+    <div class="level">
+        <div class="level-item has-text-cenetered">
+            <h1 class="title is1">
+                404 No project found!
+            </h1>
+        </div>
+    </div>
+</div>

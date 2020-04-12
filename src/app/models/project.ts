@@ -6,6 +6,7 @@ export class Project {
     git: string;
     url: string;
     private: boolean;
+    owner: string;
 
     constructor(data: any) {
         this.id          = data.id
@@ -14,5 +15,6 @@ export class Project {
         this.git         = data.git;
         this.url         = data.url;
         this.private     = data.private;
+        this.owner       = data.owner;
     }
 }
